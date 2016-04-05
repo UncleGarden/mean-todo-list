@@ -2,9 +2,11 @@
 var app = angular.module('flapperNews', []);
 
 app.controller('MainController', [
-    '$scope',
-    function ($scope) {
+    '$scope', 'posts',
+    function ($scope, posts) {
         'use strict';
+        $scope.posts = posts.posts;
+        
         $scope.posts = [
             {title: 'post 1', upvotes: 5},
             {title: 'post 2', upvotes: 2},
@@ -29,6 +31,14 @@ app.controller('MainController', [
         };
     }
 ]);
+
+app.factory('posts', [function () {
+    'use strict';
+    var o = {
+        posts: []
+    };
+    return o;
+}]);
 
 
 
