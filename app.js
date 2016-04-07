@@ -1,5 +1,26 @@
 /*global angular */
-var app = angular.module('flapperNews', []);
+var app = angular.module('flapperNews', ['ui.router']);
+
+app.config([
+    '$stateProvider',
+    '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
+        'use strict';
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: '/home.html',
+                controller: 'MainController'
+            })
+        
+            .state('posts', {
+                url: '/posts/{id}',
+                templateUrl: '/posts.html',
+                controller: 'PostsController'
+            });
+        
+        $urlRouterProvider.otherwise('home');
+    }]);
 
 app.controller('MainController', [
     '$scope', 'posts',
@@ -29,6 +50,27 @@ app.controller('MainController', [
         $scope.incrementUpvotes = function (post) {
             post.upvotes += 1;
         };
+    }
+]);
+
+app.controller('PostsController', [
+    '$scope',
+    '$stateParams',
+    'posts',
+    function ($scope, $stateParams, posts) {
+        'use strict';
+        
+        $scope.posts.push({
+            title: $scope.title,
+            link: $scope.link,
+            upvotes: 0,
+            comments: [
+                {author: 'Joe', body: 'Cool post!', upvotes: 0},
+                {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+            ]
+        });
+        
+        $scope.post = posts.posts[$stateParams.id];
     }
 ]);
 

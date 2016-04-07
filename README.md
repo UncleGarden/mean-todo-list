@@ -14,6 +14,10 @@ Angular
 
 https://developers.google.com/speed/libraries/#angularjs
 
+Angular-ui-router
+
+https://cdnjs.com/libraries/angular-ui-router
+
 Bootstrap
 
 https://www.bootstrapcdn.com
