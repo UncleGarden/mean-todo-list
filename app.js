@@ -22,6 +22,14 @@ app.config([
         $urlRouterProvider.otherwise('home');
     }]);
 
+app.factory('posts', [function () {
+    'use strict';
+    var o = {
+        posts: []
+    };
+    return o;
+}]);
+
 app.controller('MainController', [
     '$scope', 'posts',
     function ($scope, posts) {
@@ -74,13 +82,7 @@ app.controller('PostsController', [
     }
 ]);
 
-app.factory('posts', [function () {
-    'use strict';
-    var o = {
-        posts: []
-    };
-    return o;
-}]);
+
 
 
 
